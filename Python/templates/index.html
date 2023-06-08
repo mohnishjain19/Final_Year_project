@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>depr-calc | Depression Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <style>
+    #returnButton {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 120px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom:10px;
+    }
+
+    #returnButton:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+
+
+</head>
+<body>
+  <div class="container">
+    <h1>Depression Calculator</h1>
+    <p class="app-desc">Depression Calculator (depr-calc) is a platform that detects the level of potential depression. Here, you can diagnose how likely you are currently experiencing depression. 
+      The application works using the Learning Vector Quantization method, which predicts based on data such as age, gender, and the characteristics or symptoms that you 
+      can input in the form below.</p>
+    <form action="/result" method="POST" id="lvq-form">
+      <div class="data-diri">
+        <h3>Personal Information</h3>
+        <div class="umurdiv">
+          <label for="umur">Age</label>
+          <input type="number" id="umur" name="umur" placeholder="Please enter your age." required>
+        </div>
+        <div class="jkdiv">
+          <label for="jkradio">Gender</label>
+          <div class="jkradio" id="jkradio">
+            <input type="radio" name="jk" id="jk1" value="1" required>
+            <label for="jk1">Male</label>
+            <input type="radio" name="jk" id="jk2" value="0">
+            <label for="jk2">Female</label>
+          </div>
+        </div>
+      </div>
+      <div class="psikologis">
+        <h3>Psychological Aspect</h3>
+        <!-- <div class="bersalah"></div>
+        <div class="takpede"></div>
+        <div class="cemas"></div>
+        <div class="badmood"></div>
+        <div class="sensi"></div>
+        <div class="takfokus"></div>
+        <div class="apatis"></div>
+        <div class="unmotivated"></div> -->
+        <div class="range-input">
+          <label for="ap1">Feelings of guilt</label>
+          <input type="range" id="ap1" name="ap1" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap2">Lack of self-confidence</label>
+          <input type="range" id="ap2" name="ap2" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap3">Anxiety</label>
+          <input type="range" id="ap3" name="ap3" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap4">
+            Bad mood</label>
+          <input type="range" id="ap4" name="ap4" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap5">Being sensitive</label>
+          <input type="range" id="ap5" name="ap5" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap6">Difficulty concentrating</label>
+          <input type="range" id="ap6" name="ap6" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap7">Apathy</label>
+          <input type="range" id="ap7" name="ap7" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="ap8">Loss of motivation</label>
+          <input type="range" id="ap8" name="ap8" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <input type="hidden" name="ap" class="aphidden">
+      </div>
+      <div class="fisik">
+        <h3>Physical Aspect</h3>
+        <!-- <div class="lelah"></div>
+        <div class="taknafsu"></div>
+        <div class="insomnia"></div>
+        <div class="pusing"></div>
+        <div class="beratturun"></div> -->
+        <div class="range-input">
+          <label for="af1">Frequent fatigue</label>
+          <input type="range" id="af1" name="af1" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="af2">
+            Decreased appetite</label>
+          <input type="range" id="af2" name="af2" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="af3">Disrupted sleep schedule</label>
+          <input type="range" id="af3" name="af3" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="af4">
+            Frequent dizziness</label>
+          <input type="range" id="af4" name="af4" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <div class="range-input">
+          <label for="af5">
+            Weight loss</label>
+          <input type="range" id="af5" name="af5" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+          <output>3</output>
+        </div>
+        <input type="hidden" name="af" class="afhidden">
+      </div>
+      <div class="mp">
+        <label for="mp">Personal issues</label>
+        <input type="range" id="mp" name="mp" min="1" max="5" oninput="this.nextElementSibling.value = this.value">
+        <output>3</output>
+      </div>
+      <input id="ss" type="submit" value="Submit" class="submit-btn">
+      <button id="returnButton">Return to Home Page</button>
+    </form>
+  </div>
+
+
+ 
+
+    <!-- Include JavaScript code to handle the button click -->
+    <script>
+      
+      document.getElementById("returnButton").addEventListener("click", function() {
+        // Redirect to the React page
+        window.location.href = "http://localhost:3000"; // Replace with the URL of your React page
+      });
+    </script> 
+  
+  <!-- <form id="testForm" action="/test" method="post">
+    <input type="text" name="test" id="test">
+    <input type="submit" value="Submit" id="submit">
+  </form> -->
+  <script src="static/js/script.js"></script>
+</body>
+</html>

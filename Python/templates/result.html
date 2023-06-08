@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/result.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <style>
+    #returnButton {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 80px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      
+    }
+    #returnButton:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+
+
+
+</head>
+<body>
+  <div class="container">
+    <h1>Prediction Result</h1>
+    <p>Class Prediction {{lvq.getKelas()}}</p>
+    <p class="face">{{{1:'🙂', 2:'😐', 3:'☹️'}[lvq.getKelas()]}}</p>
+    <p> You {{{1:'Not at risk', 2:'At risk', 3:'Highly at risk'}[lvq.getKelas()]+' Suffering from depression'}}</p>
+    <a href="../depression1" class="home-btn">Sure, feel free to take the test again.</a>
+
+    <button id="returnButton">Return to Home Page</button>
+
+    <!-- Include JavaScript code to handle the button click -->
+    <script>
+      const data ={{lvq.getKelas()}} ;
+      // Store the data in local storage
+      document.cookie = `data=${data}`;
+
+
+
+      document.getElementById("returnButton").addEventListener("click", function() {
+        // Redirect to the React page
+        window.location.href = "http://localhost:3000"; // Replace with the URL of your React page
+      });
+    </script> 
+  </div>
+</body>
+</html>

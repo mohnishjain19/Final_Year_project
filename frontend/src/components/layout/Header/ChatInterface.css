@@ -1,0 +1,96 @@
+/* ChatInterface.css */
+
+/* Chat Popup */
+.chat-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Chat Log */
+.chat-log {
+  height: 200px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.user-message {
+  background-color: #eaf2ff;
+}
+
+.assistant-message {
+  background-color: #e5e5e5;
+}
+
+/* Input Container */
+.input-container {
+  display: flex;
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.send-button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* App Container */
+.app-container {
+  position: relative;
+}
+
+.chat-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}

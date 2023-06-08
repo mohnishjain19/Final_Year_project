@@ -1,0 +1,17 @@
+.styleani
+{
+    width:100%;
+    height:95vh;
+    
+  
+
+}
+body
+{
+    background-color: gray;
+}
+.s{
+    justify-content: center;
+    text-align: center;
+    top:50%;
+}
