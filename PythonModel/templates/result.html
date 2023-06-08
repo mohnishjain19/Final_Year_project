@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depression Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #232323;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #eee;
+            font-size: 36px;
+            margin-top: 0;
+        }
+
+        p {
+            color: #eee;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .results {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fade-in 1s ease-in-out;
+        }
+
+        .positive {
+            color: #2b8dc3;
+            font-size: 24px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .learn-more-button {
+            margin-top: 30px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #2b8dc3;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .learn-more-button:hover {
+            background-color: #217ca3;
+        }
+
+        .helpline-numbers {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 8px;
+            animation: fade-in 1s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .helpline-numbers p {
+            margin: 0;
+            padding: 5px;
+            color: #eee;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        function showHelplineNumbers() {
+            var helplineNumbers = document.getElementById("helpline-numbers");
+            helplineNumbers.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2>Depression Detector</h2>
+        </div>
+    </header>
+    <div class="container">
+        <p><b>Results for Comment</b></p>
+        <div class="results">
+            {% if best_model_name == 'Naive Bayes' %}
+            <h2 class="positive">Prediction: {{ nb_prediction }}</h2>
+            {% endif %}
+            {% if best_model_name == 'Random Forest' %}
+            <h2 class="positive">Prediction: {{ rf_prediction }}</h2>
+            {% endif %}
+            {% if best_model_name == 'Support Vector Machine' %}
+            <h2 class="positive">Prediction: {{ svm_prediction }}</h2>
+            {% endif %}
+            <p>
+                {% if nb_accuracy %}
+                Naive Bayes Accuracy: {{ nb_accuracy|round(3) }}<br>
+                {% endif %}
+                {% if rf_accuracy %}
+                Random Forest Accuracy: {{ rf_accuracy|round(3) }}<br>
+                {% endif %}
+                {% if svm_accuracy %}
+                Support Vector Machine Accuracy: {{ svm_accuracy|round(3) }}<br>
+                {% endif %}
+            </p>
+            {% if best_model_name != 'None' %}
+            <button  class="learn-more-button" id="returnButton" class="btn btn-primary btn-block">Return to Home Page</button>
+            <button class="learn-more-button" onclick="showHelplineNumbers()">Learn More</button>
+            <div class="helpline-numbers" id="helpline-numbers">
+                <p>Helpline Numbers:</p>
+                <p>1-800-XXX-XXXX</p>
+                <p>1-888-XXX-XXXX</p>
+                <p>1-877-XXX-XXXX</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+      
+        var prediction1 = '{{ nb_prediction }} Naive Bayes Algorithm {{ nb_accuracy|round(3) }}';  // Accessing the prediction variable from server-side
+        var prediction2 = '{{ rf_prediction }} Random Forest Algorithm {{ rf_accuracy|round(3) }}'; 
+        var prediction3 = '{{ svm_prediction }} Support Vector Machine {{ svm_accuracy|round(3) }}'; 
+        console.log(prediction1);
+        console.log(prediction2);
+        console.log(prediction3);
+        document.cookie = `dataa1=${prediction1}`;
+        document.cookie = `dataa2=${prediction2}`;
+        document.cookie = `dataa3=${prediction3}`;
+        
+
+        document.getElementById("returnButton").addEventListener("click", function() {
+          // Redirect to the React page
+          window.location.href = "http://localhost:3000"; // Replace with the URL of your React page
+        });
+      </script> 
+
+
+</body>
+</html>

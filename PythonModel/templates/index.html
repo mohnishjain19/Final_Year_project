@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <title>Sentiment Analysis App</title>
+    <style>
+        body {
+            background-color: #101011;
+            font-family: Arial, sans-serif;
+        }
+
+        .jumbotron {
+            background-color: #1976d2;
+            color: #fff;
+            padding: 50px;
+            margin-bottom: 30px;
+            border-radius: 0;
+            text-align: center;
+        }
+
+        .jumbotron h2 {
+            font-size: 36px;
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        .jumbotron p {
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-container textarea {
+            resize: none;
+            height: 150px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container small {
+            display: block;
+            margin-top: -5px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .form-container button {
+            font-size: 20px;
+            padding: 10px 30px;
+            background-color: #1976d2;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #1565c0;
+        }
+
+        .form-container button:focus {
+            outline: none;
+        }
+
+        /* Responsive styling */
+        @media screen and (max-width: 768px) {
+            .jumbotron h2 {
+                font-size: 30px;
+            }
+
+            .jumbotron p {
+                font-size: 18px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-container textarea {
+                height: 100px;
+            }
+
+            .form-container button {
+                font-size: 18px;
+                padding: 8px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="container">
+          <h2>Depression Sentiment Analysis Platform</h2>
+          <p>Write a review and see its polarity.</p>
+      </div>
+      </div>
+      <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-md-offset-3 form-container">
+              <form method="post" action="{{ url_for('main') }}">
+                  <div class="form-group">
+                      <label for="review">Review</label>
+                      <textarea name="review" class="form-control" placeholder="Enter your review" required></textarea>
+                      <small class="form-text text-muted">Your opinion matters to us.</small>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                  <button id="returnButton" class="btn btn-primary btn-block">Return to Home Page</button>
+                </form>
+          </div>
+      </div>
+      </div>
+
+        <!-- Include JavaScript code to handle the button click -->
+    <script>
+      
+        document.getElementById("returnButton").addEventListener("click", function() {
+          // Redirect to the React page
+          window.location.href = "http://localhost:3000"; // Replace with the URL of your React page
+        });
+      </script> 
+
+
+      </body>
+      </html>
+      
